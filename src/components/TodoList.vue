@@ -6,7 +6,7 @@
       </div>
     </div>
     <div class="row">
-      <p>Add Create Form</p>
+      <NewTodo @on-addtodo="addTodo($event)" />
     </div>
     <div class="row">
       <div class="col-12 col-lg-6">
@@ -16,6 +16,9 @@
             :key="index"
             :todoString="todo.todoString"
             :completed="todo.completed"
+            @on-delete="deleteTodo(todo)"
+            @on-toggle="toggleTodo(todo)"
+            @on-edit="editTodo(todo, $event)"
           />
         </ul>
       </div>
@@ -26,10 +29,12 @@
 <script>
 //import components
 import Todo from "./Todo";
+import NewTodo from "./NewTodo";
 export default {
   //register components
   components: {
-    Todo
+    Todo,
+    NewTodo
   },
   //data or state for the component
   data() {
